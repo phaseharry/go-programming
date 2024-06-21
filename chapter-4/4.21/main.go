@@ -10,7 +10,11 @@ An interface defines a value that has to have the functions to associated with i
 If a value gets passed in does not have the functions on the interface defined then Go will scream at you at compile time.
 Having interface{} as the type means a value of any type can be passed in. This is the same as "any" type. However, you can't use the values
 type in processing unless assert it. Type asserting it allows you to use the "any" or "interface{}" underlying value's type to do processing.
-It removes the responsibility from Go's compiler to type check it and the developer needs to handle the potential failures during runtime
+It removes the responsibility from Go's compiler to type check it and the developer needs to handle the potential failures during runtime.
+
+interface{} and any, along with type assertions allows you to overcome Go's strict type controls, allowing functions to be created that can support
+any type of variable. Using them removes Go's compile time type safety checks. It is still safe to use it but the responsiblity is now the dev's to handle
+any potential errors/issues otherwise runtime errors can occur
 */
 func doubler(v interface{}) (string, error) {
 	// checking if value can be type asserted to int, if it's an int, then process it
