@@ -13,6 +13,9 @@ Type constraints specifies the requirements or capabilities that a type paramete
 when working with generic functions or types. By declaring type constraints, this specifies to
 the Go compiler the expected behavior of the type parameter and type checks can be performed
 during compile time.
+
+For complex types, often times the constraints will be declared as an interface. This will
+allow any type that implements the interface to be used in the generic function
 */
 type Number interface {
 	int | float64
