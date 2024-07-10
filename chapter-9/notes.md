@@ -30,3 +30,5 @@ exclude (
   github.com/some/dependency v2.0.0
 )
 ```
+
+In exercise 9.1, we created a module called bookutil that contained an "author" package. Within the "author" package, we have an author struct with methods. In our main package, we imported it for use.
