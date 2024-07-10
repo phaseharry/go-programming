@@ -31,4 +31,6 @@ exclude (
 )
 ```
 
-In exercise 9.1, we created a module called bookutil that contained an "author" package. Within the "author" package, we have an author struct with methods. In our main package, we imported it for use.
+In exercise 9.01, we created a module called bookutil that contained an "author" package. Within the "author" package, we have an author struct with methods. In our main package, we imported it for use.
+
+Go module does not need to have the same name as your Go packages since you can have many packages to one module and project. In exercise 9.01's case, the primary purpose of the module is to manage and work with books and authors so the module's name should reflect the broader context.
