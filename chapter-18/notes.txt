@@ -1,0 +1,2 @@
+- the main function is run as a goroutine and it can spawn other goroutines and process operations concurrently.
+i.e) passing hammer around between people until people finishes their jobs rather than each person having a hammer and working (parallel processing)
