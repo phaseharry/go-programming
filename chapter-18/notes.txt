@@ -1,2 +1,23 @@
 - the main function is run as a goroutine and it can spawn other goroutines and process operations concurrently.
 i.e) passing hammer around between people until people finishes their jobs rather than each person having a hammer and working (parallel processing)
+
+Race conditions:
+- occurs when we updating shared memory.
+
+```
+func next(v *int) {
+  c := *v
+  *v = c + 1 
+}
+
+...
+  a := 0
+  go next(&a)
+  go next(&a)
+  go next(&a)
+```
+
+In the above case we can see that the final value can be either 1, 2, 3 depending on how the calls are ordered and we have no control of that.
+- ex of how to get 1
+one call gets c of 0 and add 1. Before operation A has finished setting "a" with 1, Operation B gets latest value of c (still 0). Same for operation C,
+so all 3 operations set the value of c to 1.
