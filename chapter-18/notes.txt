@@ -21,3 +21,27 @@ In the above case we can see that the final value can be either 1, 2, 3 dependin
 - ex of how to get 1
 one call gets c of 0 and add 1. Before operation A has finished setting "a" with 1, Operation B gets latest value of c (still 0). Same for operation C,
 so all 3 operations set the value of c to 1.
+
+
+Notes on using mutex (mutual exclusion) to synchronization concurrent operations. Essentially locking and unlocking a set of code blocks so other ongoing operations
+are blocked if current operation calls the mutual exclusion and locks it.
+
+ex)
+```
+  mtx := &sync.Mutex{}
+
+  // passing mutex to multiple goroutines and locking certain parts and ensures exlusive access to critical sections of code.
+  // prevents other goroutines from accessing the same resource until the mutex is unlocked.
+
+  mtx.Lock() // will lock the code section after call execution for all the routines except for the routine that called it,
+  ensuring that the routine will be the only routine to be able to update variable s at the time.
+  s = s + 5
+
+  mtx.Unlock()
+```
+
+Note:
+- the more code there is between the .Lock() and .Unlock() calls will result in the program being less concurrent as it blocks execution from 
+other routines. Thus, the only code that should be between the 2 calls are just critical updates to shared resources (not computing if computing is done with non-shared resources)
+
+- Mutex-protected code can only be run by one goroutine at a time, so you should not rely on goroutines to order things correctly if ordering of goroutines matter.
